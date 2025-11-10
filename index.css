@@ -1,4 +1,162 @@
-html, body {
+:root {
+    --background-height: 20vh;
+
+    font-family: inter, Verdana, Geneva, Tahoma, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+
     margin: 0;
     padding: 0;
+    border: none;
+}
+
+body {
+    height: 100vh;
+
+    position: relative;
+}
+
+.flex-row {
+    display: flex;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.background {
+    width: 100%;
+    height: var(--background-height);
+
+    position: absolute;
+    z-index: -2;
+
+    background: #374151 url('images/background.png') no-repeat;
+    background-size: cover;
+    background-position: center 22%;
+
+}
+
+.background::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: rgba(0, 0, 0, 0.6);
+}
+
+header {
+    height: calc(var(--background-height) / 2);
+
+    padding: 0 2.625rem 0;
+
+    align-items: end;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 2rem;
+    color: whitesmoke;
+
+    line-height: 2rem;
+}
+
+.title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.watch-list-link {
+    align-self: flex-end;
+
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+main {
+    flex: 1;
+}
+
+.search-section {
+    height: var(--background-height);
+
+    justify-content: center;
+}
+
+.search-bar {
+    width: 80%;
+    height: auto;
+
+    padding-right: 0.6rem;
+    padding-left: 0.2rem;
+
+    margin: 0 auto;
+
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+    justify-content: center;
+}
+
+.search-icon,
+.search-input::placeholder,
+.search-btn {
+    font-size: 0.875rem;
+}
+
+.search-icon {
+    padding: 0 1.5rem 0 0.5rem;
+
+    align-self: center;
+}
+
+.search-input {
+    padding-left: 0.5rem;
+
+    flex: 1;
+    align-self: stretch;
+}
+
+.search-btn {
+    padding: 0.563rem 1.125rem 0.563rem 1.75rem;
+
+    border-left: 1px solid #D1D5DB;
+
+    background-color: #F9FAFB;
+
+    color: #374151;
+    text-align: center;
+}
+
+.movies {
+    flex: 1;
+}
+
+.no-content {
+    padding-top: 40%;
+
+    flex: 1;
+
+    align-items: center;
+}
+
+.film-icon,
+.explore-text {
+    color: #DFDDDD;
+}
+
+.film-icon {
+    font-size: 4rem;
+}
+
+.explore-text {
+    font-size: 1.25rem;
 }

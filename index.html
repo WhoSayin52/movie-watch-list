@@ -2,13 +2,48 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch List</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
 </head>
 
-<body>
+<body class="flex-col">
+    <div class="background"></div>
+    <header class="flex-row">
+        <h1 class="title"><a href="index.html">Find your film</a></h1>
+        <a class="watch-list-link" href="watch-list.html" target="_blank">My Watch list</a>
+    </header>
 
+    <main class="flex-col">
+        <section class="search-section flex-col">
+            <form role="search">
+                <search class="search-bar flex-row">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input class="search-input" type="search" placeholder="Search for a movie">
+                    <button class="search-btn">Search</button>
+                </search>
+            </form>
+        </section>
+
+        <section class="movies flex-col">
+            <div class="no-content flex-col">
+                <i class="fa-solid fa-film film-icon"></i>
+                <p class="explore-text">Start exploring</p>
+            </div>
+        </section>
+    </main>
 </body>
 
 </html>
