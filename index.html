@@ -16,22 +16,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch List</title>
     <link rel="stylesheet" href="index.css">
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
 </head>
 
 <body class="flex-col">
     <div class="background"></div>
     <header class="flex-row">
-        <h1 class="title"><a href="index.html">Find your film</a></h1>
-        <a class="watch-list-link" href="watch-list.html" target="_blank">My Watch list</a>
+        <h1 class="title">Find your film</h1>
+        <a class="watchlist-link" href="watchlist.html" target="_blank">My Watchlist</a>
     </header>
 
     <main class="flex-col">
         <section class="search-section flex-col">
-            <form role="search">
+            <form role="search" class="search-form">
                 <search class="search-bar flex-row">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input class="search-input" type="search" placeholder="Search for a movie">
+                    <input name="search-input" class="search-input" type="search" placeholder="Search for a movie">
                     <button class="search-btn">Search</button>
                 </search>
             </form>
