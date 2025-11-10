@@ -4,6 +4,19 @@ const link = `http://www.omdbapi.com/?apikey=${apiKey}`
 const resultSection = document.querySelector('section.movies');
 const searchFrom = document.querySelector('form.search-form')
 
+const watchList = JSON.parse(localStorage.getItem('watchlist')) || []
+let cleanData = []
+
+document.addEventListener('click', (event) => {
+
+	if (event.target.classList.contains('add-watchlist-btn')) {
+		addToWatchlist(event.target.dataset.index)
+	}
+	else if (event.target.parentElement.classList.contains('add-watchlist-btn')) {
+		addToWatchlist(event.target.parentElement.dataset.index)
+	}
+})
+
 searchFrom.addEventListener('submit', (event) => {
 	event.preventDefault();
 
@@ -28,7 +41,15 @@ async function getSearchResults(search) {
 
 		const result = await response.json()
 
-		renderResults((result.Search).slice(0, 10));
+		if (result.Response === 'False') {
+			resultSection.innerHTML = `
+				<div class="no-content flex-col">
+                <p style="font-size: 1.125rem; font-weight: 800; max-width: 550px; text-align: center;" class="explore-text">Unable to find what you’re looking for. Please try another search.</p>
+            </div>`
+		}
+		else {
+			renderResults((result.Search).slice(0, 10));
+		}
 	}
 	catch (error) {
 		console.error('ERROR: ' + error.message);
@@ -48,7 +69,7 @@ async function renderResults(results) {
 				const result = await response.json()
 				const { Title, Ratings, Runtime, Genre, Plot } = result
 
-				return { Title, Ratings, Runtime, Genre, Plot, Poster: movie.Poster }
+				return { Title, Ratings, Runtime, Genre, Plot, Poster: movie.Poster, Added: false }
 			}
 			catch (error) {
 				console.error('ERROR: ' + error.message);
@@ -57,9 +78,10 @@ async function renderResults(results) {
 		})
 	)
 
-	const cleanData = data.filter(Boolean)
+	cleanData = data.filter(Boolean)
 	//console.log(cleanData)
-	resultSection.innerHTML = cleanData.map((movie) => {
+
+	resultSection.innerHTML = cleanData.map((movie, index) => {
 		const { Title, Ratings, Runtime, Genre, Plot, Poster } = movie;
 		const rating = (Ratings.length > 0) ? Ratings[0].Value.slice(0, 3) : '0.0';
 		return `
@@ -73,11 +95,20 @@ async function renderResults(results) {
 						<div class="time-genre-add-watchlist-btn flex-row">
 							<p>${Runtime}</p>
 							<p class="movie-genre">${Genre}</p>
-							<button class="add-watchlist-btn"><i class="fa-solid fa-circle-plus"></i>Watchlist</button>
+							<button class="add-watchlist-btn" data-index="${index}"><i class="fa-solid fa-circle-plus"></i>Watchlist</button>
 						</div>
 						<p class="description">${Plot}</p>
 					</div>
 			</div>`
 	}).join('')
 }
+let n = 0
+function addToWatchlist(index) {
+	if (cleanData[index].Added) {
+		return
+	}
 
+	cleanData[index].Added = true
+	watchList.push(cleanData[index])
+	localStorage.setItem('watchlist', JSON.stringify(watchList))
+}

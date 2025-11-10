@@ -217,13 +217,15 @@ main {
 }
 
 .movie-genre {
-    max-width: 150px;
+    max-width: 100px;
 }
 
+.remove-watchlist-btn,
 .add-watchlist-btn {
     background-color: white;
 }
 
+.remove-watchlist-btn:hover,
 .add-watchlist-btn:hover {
     cursor: pointer;
 }
